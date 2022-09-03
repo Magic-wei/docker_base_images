@@ -1,0 +1,24 @@
+ARG UBUNTU_DISTRO
+FROM ubuntu:${UBUNTU_DISTRO:-18.04}
+
+# Update source
+ARG DEBIAN_FRONTEND=noninteractive
+RUN cp /etc/apt/sources.list /etc/apt/sources.list.bak && \
+    sed -i "s@http://.*archive.ubuntu.com@http://mirrors.tuna.tsinghua.edu.cn@g" /etc/apt/sources.list && \
+    sed -i "s@http://.*security.ubuntu.com@http://mirrors.tuna.tsinghua.edu.cn@g" /etc/apt/sources.list && \
+    apt-get update && \
+    apt-get install --no-install-recommends wget openssl ca-certificates -y \
+    && rm -rf /var/lib/apt/lists/* \
+    && mv /etc/apt/sources.list.bak /etc/apt/sources.list
+
+# Install Miniconda and initialize
+ARG MINICONDA_VERSION=latest
+ENV MINICONDA_DIR="/opt/anaconda/Miniconda3"
+RUN wget https://mirrors.tuna.tsinghua.edu.cn/anaconda/miniconda/Miniconda3-${MINICONDA_VERSION}-Linux-x86_64.sh -O miniconda.sh && \
+    chmod +x miniconda.sh && \
+    ./miniconda.sh -b -p $MINICONDA_DIR && \
+    rm miniconda.sh && \
+    $MINICONDA_DIR/bin/conda init && \
+    $MINICONDA_DIR/bin/conda clean -afy
+
+CMD ["/bin/bash"]

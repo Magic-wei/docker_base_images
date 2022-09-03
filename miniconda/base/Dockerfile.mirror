@@ -13,12 +13,15 @@ RUN cp /etc/apt/sources.list /etc/apt/sources.list.bak && \
 
 # Install Miniconda and initialize
 ARG MINICONDA_VERSION=latest
-ENV MINICONDA_DIR="/opt/anaconda/Miniconda3"
+ENV MINICONDA_DIR="/opt/miniconda/miniconda3"
 RUN wget https://mirrors.tuna.tsinghua.edu.cn/anaconda/miniconda/Miniconda3-${MINICONDA_VERSION}-Linux-x86_64.sh -O miniconda.sh && \
     chmod +x miniconda.sh && \
     ./miniconda.sh -b -p $MINICONDA_DIR && \
     rm miniconda.sh && \
     $MINICONDA_DIR/bin/conda init && \
     $MINICONDA_DIR/bin/conda clean -afy
+
+COPY ./miniconda_entrypoint.sh /
+ENTRYPOINT ["/miniconda_entrypoint.sh"]
 
 CMD ["/bin/bash"]

@@ -9,6 +9,7 @@ IMAGE_TAG=magic4wei/miniconda:miniconda3-${MINICONDA_VERSION_IN}-ubuntu${UBUNTU_
 echo "Build Miniconda: $DOCKERFILE - $UBUNTU_DISTRO_IN - $MINICONDA_VERSION_IN"
 
 # Build
+cp miniconda_entrypoint.sh base/
 case $BUILD_WITH in
     origin) 
             docker build --rm -f base/Dockerfile -t ${IMAGE_TAG} \
@@ -24,3 +25,4 @@ case $BUILD_WITH in
             ;;
     *) echo "Choose to build with: origin or mirror (modify apt mirror before apt install)!" && exit 1;;
 esac
+rm base/miniconda_entrypoint.sh

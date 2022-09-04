@@ -1,6 +1,11 @@
 # Miniconda Base Images
 
+## Installed Packages
+
 Install latest Miniconda version.
+
+- [`base/Dockerfile`](base/Dockerfile): installed wget, openssl, ca-certificates and Miniconda3.
+- [`gui_base/Dockerfile`](gui_base/Dockerfile): built from [`magic4wei/ubuntu:gui-base-*`](https://hub.docker.com/r/magic4wei/ubuntu) and installed Miniconda3. See [ubuntu README](../ubuntu/README.md) for more details about installed packages.
 
 ## Build and Push
 
@@ -22,7 +27,11 @@ I personally manage base images with commands below, you can modify them for you
 
 ## Usage
 
+You can pull Miniconda base images from [magic4wei/miniconda](https://hub.docker.com/r/magic4wei/miniconda) or build with scripts in this directory.
+
 ### Explore Miniconda Base Images
+
+Get started with base image `magic4wei/miniconda:miniconda3-<XXXXXX>-ubuntu<XX>.04-gui` If you want to run a GUI application that requires OpenGL rendering (see tutorial below). Otherwise `magic4wei/miniconda:miniconda3-<XXXXXX>-ubuntu<XX>.04` would be better since it has smaller size.
 
 Explore Miniconda base images by running
 

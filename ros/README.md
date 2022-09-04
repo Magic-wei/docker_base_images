@@ -1,9 +1,15 @@
 # ROS Base Images
 
-Install utility packages for more convenient development and test:
+## Installed Packages
+
+ROS base images ([`base/Dockerfile`](base/Dockerfile)) are built on top of [`osrf/ros:<ros-distro>-desktop`](https://hub.docker.com/r/osrf/ros).
+
+Some packages are installed for more convenient development and test:
 - Utils: apt-utils, lsb-release, ca-certificates openssl
 - Download files: git, wget, curl
 - Archive, compress and uncompress: tar, gzip, lzip. bzip2. xz-utils, lzma, lzop
+
+Additional GUI-related packages are installed in ROS GUI base images ([`gui_base/Dockerfile`](gui_base/Dockerfile)) to enable OpenGL rendering and X display.
 
 ## Manage Package Repositories
 
@@ -52,7 +58,11 @@ I personally manage base images with commands below, you can modify them for you
 
 ## Usage
 
+You can pull ROS base images from [magic4wei/ros](https://hub.docker.com/r/magic4wei/ros) or build with scripts in this directory.
+
 ### Explore ROS Base Images
+
+Get started with base image `magic4wei/ros:<ros-distro>-desktop-<ubuntu-distro>-gui` If you want to run a GUI application that requires OpenGL rendering (see tutorial below). Otherwise `magic4wei/ros:<ros-distro>-desktop-<ubuntu-distro>` would be better since it has smaller size.
 
 ROS base images all have an entrypoint script located at `/ros_entrypoint.sh`:
 
@@ -66,7 +76,6 @@ exec "$@"
 ```
 
 This entrypoint allows us to execute successive commands after ros environment setup.
-
 
 Explore more about base images by running
 

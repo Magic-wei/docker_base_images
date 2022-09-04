@@ -1,9 +1,15 @@
 # Ubuntu Base Images
 
-Install packages for more convenient development and test:
+## Installed Packages
+
+Ubuntu base images ([`base/Dockerfile`](base/Dockerfile)) are built on top of [`ubuntu:<distro>`](https://hub.docker.com/_/ubuntu).
+
+Some packages are installed for more convenient development and test:
 - Utils: apt-utils, lsb-release, ca-certificates openssl
 - Download files: git, wget, curl
 - Archive, compress and uncompress: tar, gzip, lzip. bzip2. xz-utils, lzma, lzop
+
+Additional GUI-related packages are installed in Ubuntu GUI base images ([`gui_base/Dockerfile`](gui_base/Dockerfile)) to enable OpenGL rendering and X display.
 
 ## Manage Package Repositories
 
@@ -33,7 +39,11 @@ I personally manage base images with commands below, you can modify them for you
 
 ## Usage
 
+You can pull Ubuntu base images from [magic4wei/ubuntu](https://hub.docker.com/r/magic4wei/ubuntu) or build with scripts in this directory.
+
 ### Explore Ubuntu Base Images
+
+Get started with base image `magic4wei/ubuntu:gui-base-*` If you want to run a GUI application that requires OpenGL rendering (see tutorial below). Otherwise `magic4wei/ubuntu:base-*` would be better since it has smaller size.
 
 Explore Ubuntu base images by running
 

@@ -19,11 +19,13 @@ I personally manage base images with commands below, you can modify them for you
 
 ## Usage
 
+You can pull DeraPyGui base images from [magic4wei/dearpygui](https://hub.docker.com/r/magic4wei/dearpygui) or build with scripts in this directory.
+
 ### Explore DearPyGui Base Images
 
 DearPyGui base images are built from Miniconda base image `magic4wei/miniconda:*-gui`. A new conda environment is created to install required Python version and DearPyGui package. By default, the name of the new conda environment is `gui_dev`.
 
-Everything else is identical to the Miniconda base image.
+Everything else is identical to the Miniconda base image `magic4wei/miniconda:miniconda3-latest-ubuntu<XX>.04-gui` (see [magic4wei/miniconda](https://hub.docker.com/r/magic4wei/miniconda)).
 
 Explore DearPyGui base images by running
 
